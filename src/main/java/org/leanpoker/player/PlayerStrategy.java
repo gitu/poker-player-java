@@ -22,12 +22,23 @@ public class PlayerStrategy {
     }
 
     private static int preFlopStrategy(GameState gameState) {
-    	int strength = computeHoleCardStrength(gameState.getPlayers()[gameState.getIn_action()]);
-    	System.out.println("Determined we are currently in the preFlop. Card Strength is: " + strength);
+    	System.out.println("Determined we are currently in the preFlop. Cards: ");
+    	
+    	Player player = gameState.getPlayers()[gameState.getIn_action()];
+    	Card[] hole_cards = player.getHole_cards();
+		Card first = hole_cards[0];
+		Card second = hole_cards[1];
+		
+		System.out.println(first.toString(""));
+		System.out.println(second.toString(""));
+		
+		int strength = computeHoleCardStrength(first, second);
+    	System.out.println("Card Strength is: " + strength);
+    	
     	if (strength <= 27) {
     		return 0;
     	} else {
-			int call = gameState.getCurrent_buy_in() - gameState.getPlayers()[gameState.getIn_action()].getBet();
+			int call = gameState.getCurrent_buy_in() - player.getBet();
 			if (strength <= 31) {
 				//Call
 				return call;
@@ -44,10 +55,7 @@ public class PlayerStrategy {
     	//System.out.println("Parsed Gamestate: " + gameState.toString());
     }
     
-	private static int computeHoleCardStrength(Player player) {
-		Card[] hole_cards = player.getHole_cards();
-		Card first = hole_cards[0];
-		Card second = hole_cards[1];
+	private static int computeHoleCardStrength(Card first, Card second) {
 		int result = 0;
 		
 		result += getSingleCardStrength(first);
