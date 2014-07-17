@@ -10,6 +10,7 @@ public class GameState {
 	private int pot;
 	private int in_action;
 	private int minimum_raise;
+	private int amount_won;
 	public Player[] getPlayers() {
 		return players;
 	}
@@ -64,7 +65,13 @@ public class GameState {
 	public void setMinimum_raise(int minimum_raise) {
 		this.minimum_raise = minimum_raise;
 	}
-	
+	public int getAmount_won() {
+		return amount_won;
+	}
+	public void setAmount_won(int amount_won) {
+		this.amount_won = amount_won;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -83,5 +90,4 @@ public class GameState {
 		}
 		return stringBuilder.toString();
 	}
-
 }
