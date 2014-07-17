@@ -8,6 +8,7 @@ public class Player {
 	private Card[] hole_cards = new Card[0];
 	private String version;
 	private int id;
+	private int amount_won;
 	public String getName() {
 		return name;
 	}
@@ -64,5 +65,11 @@ public class Player {
 		}
 		
 		return stringBuilder.toString();
+	}
+	public int getAmount_won() {
+		return amount_won;
+	}
+	public void setAmount_won(int amount_won) {
+		this.amount_won = amount_won;
 	}
 }
