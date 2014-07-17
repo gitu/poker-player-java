@@ -1,5 +1,8 @@
 package org.leanpoker.player;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class PlayerStrategy {
 	
     static final String VERSION = "Always calling player";
@@ -13,7 +16,7 @@ public class PlayerStrategy {
         if (gameState.getCommunity_cards().length == 0) {
     		bet = preFlopStrategy(gameState);
     	} else {
-    		
+    		bet = postFlopStrategy(gameState);
     	}
 
         System.out.println("Betting: " + bet);
@@ -21,7 +24,145 @@ public class PlayerStrategy {
 		return bet;
     }
 
-    private static int preFlopStrategy(GameState gameState) {
+    private static int postFlopStrategy(GameState gameState) {
+    	Player player = gameState.getPlayers()[gameState.getIn_action()];
+    	Card[] hole_cards = player.getHole_cards();
+		
+    	Card[] community_cards = gameState.getCommunity_cards();
+    	
+    	Collection<Card> allCards = new ArrayList<Card>();
+    	for (Card card: hole_cards) {
+        	allCards.add(card);
+    	}
+    	for (Card card: community_cards) {
+        	allCards.add(card);
+    	}
+    	
+		int strength = computeTotalCardStrength(allCards, gameState.getSmall_blind());
+		int call = gameState.getCurrent_buy_in() - player.getBet();
+		int raise = strength;
+		
+		if (call <= strength * 2) {
+	    	return Math.max(raise, call);
+		} else {
+			return 0;
+		}
+		
+	}
+
+	private static int computeTotalCardStrength(Collection<Card> allCards, int smallBlind) {
+		if (isStraightFlush(allCards)) {
+			return smallBlind*1000;
+		} else if (isFourOfAKind(allCards)) {
+			return smallBlind*100;
+		} else if (isFullHouse(allCards)) {
+			return smallBlind*50;
+		} else if (isFlush(allCards)) {
+			return smallBlind*35;
+		} else if (isStraight(allCards)) {
+			return smallBlind*25;
+		} else if (isThreeOfAKind(allCards)) {
+			return smallBlind*15;
+		} else if (isTwoPair(allCards)) {
+			return smallBlind*8;
+		} else if (isPair(allCards)) {
+			return smallBlind*4;
+		} else {
+			return smallBlind*2;
+		}
+	}
+
+	private static boolean isPair(Collection<Card> allCards) {
+		for (Card first : allCards) {
+			for (Card second : allCards) {
+				if (first.getRank() == second.getRank()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private static boolean isTwoPair(Collection<Card> allCards) {
+		int pairs = 0;
+		for (Card first : allCards) {
+			for (Card second : allCards) {
+				if (first.getRank() == second.getRank()) {
+					pairs++;
+				}
+			}
+		}
+		return pairs >= 4;
+	}
+
+	private static boolean isThreeOfAKind(Collection<Card> allCards) {
+		for (Card first : allCards) {
+			for (Card second : allCards) {
+				for (Card third : allCards) {
+					if (first.getRank() == second.getRank() && second.getRank() == third.getRank()) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	private static boolean isStraight(Collection<Card> allCards) {
+		if (allCards.size() < 5) {
+			return false;
+		}
+		
+		
+		return false;
+	}
+
+	private static boolean isFlush(Collection<Card> allCards) {
+		if (allCards.size() < 5) {
+			return false;
+		}
+		for (Suit suit : Suit.values()) {
+			int count = 0;
+			for (Card card : allCards) {
+				if (card.getSuit().equals(suit)) {
+					count++;
+				}
+			}
+			if (count >= 5) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	private static boolean isFullHouse(Collection<Card> allCards) {
+		if (allCards.size() < 5) {
+			return false;
+		}
+		return isThreeOfAKind(allCards) && isPair(allCards);
+	}
+
+	private static boolean isFourOfAKind(Collection<Card> allCards) {
+		for (Card first : allCards) {
+			for (Card second : allCards) {
+				for (Card third : allCards) {
+					for (Card fourth : allCards) {
+						if (first.getRank() == second.getRank() && second.getRank() == third.getRank() && third.getRank() == fourth.getRank()) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	private static boolean isStraightFlush(Collection<Card> allCards) {
+		return isFlush(allCards) && isStraight(allCards);
+	}
+
+	private static int preFlopStrategy(GameState gameState) {
     	System.out.println("Determined we are currently in the preFlop. Cards: ");
     	
     	Player player = gameState.getPlayers()[gameState.getIn_action()];
