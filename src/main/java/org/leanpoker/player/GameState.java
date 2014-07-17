@@ -69,6 +69,6 @@ public class GameState {
 		for (Card card : community_cards) {
 			stringBuilder.append(TAB + card.toString() + NEWLINE);
 		}
-		return null;
+		return stringBuilder.toString();
 	}
 }
