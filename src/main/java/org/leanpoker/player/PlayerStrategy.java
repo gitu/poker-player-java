@@ -5,7 +5,7 @@ public class PlayerStrategy {
     static final String VERSION = "Always calling player";
 
     public static int betRequest(GameState gameState) {
-    	
+    	System.out.println("betRequest");
     	//System.out.println("Parsed Gamestate: " + gameState.toString());
     	
         int bet = gameState.getCurrent_buy_in() - gameState.getPlayers()[gameState.getIn_action()].getBet();
@@ -39,9 +39,9 @@ public class PlayerStrategy {
 	}
 
 	public static void showdown(GameState gameState) {
+    	System.out.println("shutdown");
 
     	System.out.println("Parsed Gamestate: " + gameState.toString());
-
     }
     
 	private static int computeHoleCardStrength(Player player) {
