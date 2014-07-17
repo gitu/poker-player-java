@@ -51,6 +51,10 @@ public class PlayerStrategy {
 
 	public static void showdown(GameState gameState) {
     	System.out.println("showdown");
+    	
+    	for (Player player : gameState.getPlayers()) {
+    		System.out.println("Player " + player.getName() + " has " + player.getStack() + " coins.");
+    	}
 
     	//System.out.println("Parsed Gamestate: " + gameState.toString());
     }
