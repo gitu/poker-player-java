@@ -5,7 +5,7 @@ public class Player {
 	private int stack;
 	private String status;
 	private int bet;
-	private Card[] hole_cards;
+	private Card[] hole_cards = new Card[0];
 	private String version;
 	private int id;
 	public String getName() {
@@ -49,5 +49,20 @@ public class Player {
 	}
 	public void setHole_cards(Card[] hole_cards) {
 		this.hole_cards = hole_cards;
+	}
+	public String toString(String prefix) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(prefix + "name = " + name + Constants.NEWLINE);
+		stringBuilder.append(prefix + "stack = " + stack + Constants.NEWLINE);
+		stringBuilder.append(prefix + "status = " + status + Constants.NEWLINE);
+		stringBuilder.append(prefix + "bet = " + bet + Constants.NEWLINE);
+		stringBuilder.append(prefix + "version = " + version + Constants.NEWLINE);
+		stringBuilder.append(prefix + "id = " + id + Constants.NEWLINE);
+		stringBuilder.append(prefix + "HOLE_CARDS:" + hole_cards.length + Constants.NEWLINE);
+		for (Card card : hole_cards) {
+			stringBuilder.append(card.toString(prefix + Constants.TAB) + Constants.NEWLINE);
+		}
+		
+		return stringBuilder.toString();
 	}
 }

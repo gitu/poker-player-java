@@ -15,4 +15,11 @@ public class Card {
 	public void setSuit(String suit) {
 		this.suit = suit;
 	}
+	
+	public String toString(String prefix) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(prefix + "rank = " + rank + Constants.NEWLINE);
+		stringBuilder.append(prefix + "suit = " + suit + Constants.NEWLINE);
+		return stringBuilder.toString();
+	}
 }
