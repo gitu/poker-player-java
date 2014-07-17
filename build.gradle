@@ -15,8 +15,15 @@ repositories {
 // don't forget to change the port accordingly in config.yml too!
 def portOffset = 0
 
+def ENV = System.getenv()
+def port = ENV['PORT']
+
+if (port==null) {
+    port = 8080 + portOffset
+}
+
 tomcatRun {
-	httpPort = 8080 + portOffset
+	httpPort = port
 	ajpPort = 8009 + portOffset
 	stopPort = 8081 + portOffset
     contextPath = '/'
@@ -41,6 +48,7 @@ dependencies {
     testCompile 'junit:junit:4.11'
     compile 'com.google.code.gson:gson:2.2.4'
 	compile group: 'org.codehaus.jackson', name: 'jackson-jaxrs', version: '+'
+
     def tomcatVersion = '7.0.11'
 
     providedCompile "org.apache.tomcat:tomcat-servlet-api:${tomcatVersion}"
@@ -53,4 +61,4 @@ dependencies {
 }
 
 
-task stage( dependsOn: [build] ) << {}
+task stage( dependsOn: [assemble] ) << {}
