@@ -5,6 +5,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 sourceCompatibility = 1.7
+binaryCompatibility = 1.6
 version = '1.0'
 
 repositories {
