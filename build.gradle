@@ -16,10 +16,14 @@ repositories {
 def portOffset = 0
 
 def ENV = System.getenv()
-def port = ENV['PORT']
+def envPort = ENV['PORT']
 
-if (port==null) {
+if (envPort==null) {
     port = 8080 + portOffset
+}
+else
+{
+    port = envPort.toInteger()
 }
 
 tomcatRun {
