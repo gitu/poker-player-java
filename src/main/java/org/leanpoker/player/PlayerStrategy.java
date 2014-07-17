@@ -25,6 +25,7 @@ public class PlayerStrategy {
     }
 
     private static int postFlopStrategy(GameState gameState) {
+    	System.out.println("Determined we are currently in the postFlop. Cards: ");
     	Player player = gameState.getPlayers()[gameState.getIn_action()];
     	Card[] hole_cards = player.getHole_cards();
 		
@@ -33,16 +34,20 @@ public class PlayerStrategy {
     	Collection<Card> allCards = new ArrayList<Card>();
     	for (Card card: hole_cards) {
         	allCards.add(card);
+        	System.out.println(card);
     	}
     	for (Card card: community_cards) {
         	allCards.add(card);
+        	System.out.println(card);
     	}
-    	
+    	    	
 		int strength = computeTotalCardStrength(allCards, gameState.getSmall_blind());
 		int call = gameState.getCurrent_buy_in() - player.getBet();
 		int raise = strength;
 		
-		if (call <= strength * 2) {
+    	System.out.println("Card Strength is: " + strength);
+
+    	if (call <= strength * 2) {
 	    	return Math.max(raise, call);
 		} else {
 			return 0;
