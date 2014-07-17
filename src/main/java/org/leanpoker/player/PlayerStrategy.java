@@ -80,7 +80,7 @@ public class PlayerStrategy {
 	private static boolean isPair(Collection<Card> allCards) {
 		for (Card first : allCards) {
 			for (Card second : allCards) {
-				if (first.getRank() == second.getRank()) {
+				if (first != second && first.getRank() == second.getRank()) {
 					return true;
 				}
 			}
@@ -92,7 +92,7 @@ public class PlayerStrategy {
 		int pairs = 0;
 		for (Card first : allCards) {
 			for (Card second : allCards) {
-				if (first.getRank() == second.getRank()) {
+				if (first != second && first.getRank() == second.getRank()) {
 					pairs++;
 				}
 			}
@@ -104,7 +104,7 @@ public class PlayerStrategy {
 		for (Card first : allCards) {
 			for (Card second : allCards) {
 				for (Card third : allCards) {
-					if (first.getRank() == second.getRank() && second.getRank() == third.getRank()) {
+					if (first != second && second != third && first != third && first.getRank() == second.getRank() && second.getRank() == third.getRank()) {
 						return true;
 					}
 				}
@@ -153,7 +153,7 @@ public class PlayerStrategy {
 			for (Card second : allCards) {
 				for (Card third : allCards) {
 					for (Card fourth : allCards) {
-						if (first.getRank() == second.getRank() && second.getRank() == third.getRank() && third.getRank() == fourth.getRank()) {
+						if (first != second && second != third && third != fourth && second != third && third != fourth && second != fourth && first.getRank() == second.getRank() && second.getRank() == third.getRank() && third.getRank() == fourth.getRank()) {
 							return true;
 						}
 					}
