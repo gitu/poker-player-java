@@ -16,9 +16,10 @@ public class ParsingTest {
 
         assertEquals(10, gameState.getSmall_blind());
         assertEquals(240, gameState.getMinimum_raise());
-        assertEquals("hearts", gameState.getCommunity_cards()[1].getSuit());
+        assertEquals(Suit.HEARTS, gameState.getCommunity_cards()[1].getSuit());
+        assertEquals(Rank.ACE, gameState.getCommunity_cards()[1].getRank());
         assertEquals("Albert", gameState.getPlayers()[0].getName());
         assertEquals("Bob", gameState.getPlayers()[1].getName());
-        assertEquals("6", gameState.getPlayers()[1].getHole_cards()[0].getRank());
+        assertEquals(Rank.SIX, gameState.getPlayers()[1].getHole_cards()[0].getRank());
     }
 }

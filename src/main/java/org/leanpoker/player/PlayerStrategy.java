@@ -8,7 +8,11 @@ public class PlayerStrategy {
     	
     	System.out.println("Parsed Gamestate: " + gameState.toString());
     	
-        return gameState.getCurrent_buy_in() - gameState.getPlayers()[gameState.getIn_action()].getBet();
+        int bet = gameState.getCurrent_buy_in() - gameState.getPlayers()[gameState.getIn_action()].getBet();
+        
+        System.out.println("Betting: " + bet);
+        
+		return bet;
     }
 
     public static void showdown(GameState gameState) {

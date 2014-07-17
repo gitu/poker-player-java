@@ -1,18 +1,18 @@
 package org.leanpoker.player;
 
 public class Card {
-	private String rank;
-	private String suit;
-	public String getRank() {
+	private Rank rank;
+	private Suit suit;
+	public Rank getRank() {
 		return rank;
 	}
-	public void setRank(String rank) {
+	public void setRank(Rank rank) {
 		this.rank = rank;
 	}
-	public String getSuit() {
+	public Suit getSuit() {
 		return suit;
 	}
-	public void setSuit(String suit) {
+	public void setSuit(Suit suit) {
 		this.suit = suit;
 	}
 	
