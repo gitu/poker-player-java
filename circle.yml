@@ -12,4 +12,4 @@ deployment:
   develop:
     branch: feature/newdeploy
     commands:
-      - heroku deploy:war --war build\libs\poker-player-java-1.0.war --app poker-bender-newdeploy
+      - heroku deploy:war --war build/libs/poker-player-java-1.0.war --app poker-bender-newdeploy
