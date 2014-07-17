@@ -2,6 +2,7 @@ package org.leanpoker.player;
 
 public class GameState {
 	private static final String NEWLINE = "<br>";
+	private static final String TAB = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	private Player[] players;
 	private int small_blind;
 	private int orbits;
@@ -55,15 +56,19 @@ public class GameState {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("PLAYERS:" + NEWLINE);
 		for (Player player : players) {
-			stringBuilder.append(player.toString() + NEWLINE);
+			stringBuilder.append(TAB + player.toString() + NEWLINE);
 		}
 		stringBuilder.append("small_blind = " + small_blind + NEWLINE);
 		stringBuilder.append("orbits = " + orbits + NEWLINE);
 		stringBuilder.append("dealer = " + dealer + NEWLINE);
 		stringBuilder.append("current_buy_in = " + current_buy_in + NEWLINE);
 		stringBuilder.append("pot = " + pot + NEWLINE);
-
+		stringBuilder.append("COMMUNITY_CARDS:" + NEWLINE);
+		for (Card card : community_cards) {
+			stringBuilder.append(TAB + card.toString() + NEWLINE);
+		}
 		return null;
 	}
 }
