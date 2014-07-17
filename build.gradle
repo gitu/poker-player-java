@@ -65,4 +65,4 @@ dependencies {
 }
 
 
-task stage( dependsOn: [assemble] ) << {}
+task stage( dependsOn: [war] ) << {}
