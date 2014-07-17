@@ -4,3 +4,6 @@ deployment:
     branch: master
     heroku:
       appname: poker-bender
+    branch: feature/newdeploy
+    heroku:
+      appname: poker-bender-newdeploy
