@@ -39,9 +39,9 @@ public class PlayerStrategy {
 	}
 
 	public static void showdown(GameState gameState) {
-    	System.out.println("shutdown");
+    	System.out.println("showdown");
 
-    	System.out.println("Parsed Gamestate: " + gameState.toString());
+    	//System.out.println("Parsed Gamestate: " + gameState.toString());
     }
     
 	private static int computeHoleCardStrength(Player player) {
