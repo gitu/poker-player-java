@@ -1,12 +1,15 @@
 ## Customize deployment commands
 dependencies:
+  pre:
+    - heroku plugins:install https://github.com/heroku/heroku-deploy
   override:
     - ./gradlew assemble compileTest
 deployment:
-  staging:
+  production:
     branch: master
     heroku:
       appname: poker-bender
     branch: feature/newdeploy
-    heroku:
-      appname: poker-bender-newdeploy
+  develop:
+    commands:
+      - heroku deploy:war --war build\libs\poker-player-java-1.0.war --app poker-bender-newdeploy
