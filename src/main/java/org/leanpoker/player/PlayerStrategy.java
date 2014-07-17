@@ -34,11 +34,11 @@ public class PlayerStrategy {
     	Collection<Card> allCards = new ArrayList<Card>();
     	for (Card card: hole_cards) {
         	allCards.add(card);
-        	System.out.println(card);
+        	System.out.println(card.toString(""));
     	}
     	for (Card card: community_cards) {
         	allCards.add(card);
-        	System.out.println(card);
+        	System.out.println(card.toString(""));
     	}
     	    	
 		int strength = computeTotalCardStrength(allCards, gameState.getSmall_blind());
