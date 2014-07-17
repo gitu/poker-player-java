@@ -9,7 +9,7 @@ deployment:
     branch: master
     heroku:
       appname: poker-bender
-    branch: feature/newdeploy
   develop:
+    branch: feature/newdeploy
     commands:
       - heroku deploy:war --war build\libs\poker-player-java-1.0.war --app poker-bender-newdeploy
