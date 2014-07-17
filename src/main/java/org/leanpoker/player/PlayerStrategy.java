@@ -73,7 +73,7 @@ public class PlayerStrategy {
 		} else if (isPair(allCards)) {
 			return smallBlind*4;
 		} else {
-			return smallBlind*2;
+			return smallBlind;
 		}
 	}
 
