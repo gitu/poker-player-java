@@ -35,11 +35,11 @@ public class PlayerStrategy {
 		int strength = computeHoleCardStrength(first, second);
     	System.out.println("Card Strength is: " + strength);
     	
-    	if (strength <= 27) {
+    	if (strength <= 25) {
     		return 0;
     	} else {
 			int call = gameState.getCurrent_buy_in() - player.getBet();
-			if (strength <= 31) {
+			if (strength <= 29) {
 				//Call
 				return call;
 			} else {
